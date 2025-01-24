@@ -1,31 +1,28 @@
 using UnityEngine;
+using UnityEngine.Events;
 
 public class InputController : SingletonBehaviour<InputController>
 {
-    public delegate void MoveAction(Vector2 direction);
-    public delegate void JumpAction();
-    public delegate void PrimaryAction();
-    public delegate void SecondaryAction();
 
-    public event MoveAction OnMove;
-    public event JumpAction OnJump;
-    public event PrimaryAction OnPrimary;
-    public event SecondaryAction OnSecondary;
+    public UnityEvent<Vector2> OnMove;
+    public UnityEvent OnJump;
+    public UnityEvent OnPrimary;
+    public UnityEvent OnSecondary;
 
     private PlayerInputActions _playerInput;
-    
+
     protected override void Awake()
     {
         _playerInput = new();
-        _playerInput.Player.Jump.performed += (_) => OnJump();
-        _playerInput.Player.Primary.performed += (_) => OnPrimary();
-        _playerInput.Player.Secondary.performed += (_) => OnSecondary();
+        _playerInput.Player.Jump.performed += (_) => OnJump.Invoke();
+        _playerInput.Player.Primary.performed += (_) => OnPrimary.Invoke();
+        _playerInput.Player.Secondary.performed += (_) => OnSecondary.Invoke();
         base.Awake();
     }
 
     private void FixedUpdate()
     {
-        OnMove(_playerInput.Player.Move.ReadValue<Vector2>());
+        OnMove.Invoke(_playerInput.Player.Move.ReadValue<Vector2>());
     }
 
     private void OnEnable()
