@@ -8,6 +8,7 @@ public class InputController : SingletonBehaviour<InputController>
     public UnityEvent OnJump;
     public UnityEvent OnPrimary;
     public UnityEvent OnSecondary;
+    public UnityEvent OnSpecial;
 
     private PlayerInputActions _playerInput;
 
@@ -17,6 +18,7 @@ public class InputController : SingletonBehaviour<InputController>
         _playerInput.Player.Jump.performed += (_) => OnJump.Invoke();
         _playerInput.Player.Primary.performed += (_) => OnPrimary.Invoke();
         _playerInput.Player.Secondary.performed += (_) => OnSecondary.Invoke();
+        _playerInput.Player.Special.performed += (_) => OnSpecial.Invoke();
         base.Awake();
     }
 

@@ -544,6 +544,9 @@ MonoBehaviour:
   OnSecondary:
     m_PersistentCalls:
       m_Calls: []
+  OnSpecial:
+    m_PersistentCalls:
+      m_Calls: []
 --- !u!212 &1864365531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -688,6 +691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
+  acceleration: 20
 --- !u!50 &1864365536
 Rigidbody2D:
   serializedVersion: 5
@@ -714,7 +718,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
