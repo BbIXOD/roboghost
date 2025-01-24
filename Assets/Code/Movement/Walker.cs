@@ -5,6 +5,8 @@ using UnityEngine;
 class Walker : MonoBehaviour
 {
     public float speed = 1f;
+    public float acceleration = 1f;
+    private float _velocityX;
 
     private Rigidbody2D _rb;
 
@@ -15,6 +17,8 @@ class Walker : MonoBehaviour
 
     public void Walk(Vector2 direction)
     {
-        _rb.linearVelocityX = Mathf.Approximately(direction.x, 0f) ? 0f : Mathf.Sign(direction.x) * speed;
+        var _destSpeed = Mathf.Approximately(direction.x, 0f) ? 0f : Mathf.Sign(direction.x) * speed;
+        _velocityX = Mathf.MoveTowards(_velocityX, _destSpeed, acceleration * Time.fixedDeltaTime);
+        _rb.linearVelocityX = _velocityX;
     }
 }
