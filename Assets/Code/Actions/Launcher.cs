@@ -3,13 +3,16 @@ using UnityEngine;
 class Launcher : MonoBehaviour
 {
     [SerializeField]
-    private GameObject projectile;
+    protected GameObject projectile;
+
+    protected GameObject launchedProjectile;
 
     public ICooldown _cooldown;
-    public virtual bool Launch() {
+    public virtual bool Launch()
+    {
         if (!_cooldown.IsReady) return false;
 
-        Instantiate(projectile, transform.position, transform.rotation);
+        launchedProjectile = Instantiate(projectile, transform.position, transform.rotation);
         _cooldown.StartCooldown();
         return true;
     }

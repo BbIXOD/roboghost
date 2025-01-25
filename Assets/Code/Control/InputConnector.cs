@@ -1,40 +1,46 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 
-class InputConnector : MonoBehaviour
+class InputConnector : MonoBehaviour, IInputConnector
 {
     [SerializeField]
-    private UnityAction _jump;
+    private UnityEvent _jump;
     [SerializeField]
-    private UnityAction _primary;
+    private UnityEvent _primary;
     [SerializeField]
-    private UnityAction _secondary;
+    private UnityEvent _secondary;
     [SerializeField]
-    private UnityAction _special;
+    private UnityEvent _special;
     [SerializeField]
-    private UnityAction<Vector2> _move;
+    private UnityEvent<Vector2> _move;
 
-    public bool isConnected = false;
 
     public void Connect()
     {
-        isConnected = true;
         var input = InputController.instance;
-        input.OnJump.AddListener(_jump);
-        input.OnPrimary.AddListener(_primary);
-        input.OnSecondary.AddListener(_secondary);
-        input.OnSpecial.AddListener(_special);
-        input.OnMove.AddListener(_move);
+        input.OnJump.Subscribe(OnJump);
+        input.OnPrimary.Subscribe(OnPrimary);
+        input.OnSecondary.Subscribe(OnSecondary);
+        input.OnSpecial.Subscribe(OnSpecial);
+        input.OnMove.Subscribe(OnMove);
+        Debug.Log($"Input connected to {gameObject.name}");
     }
 
     public void Disconnect()
     {
-        isConnected = false;
         var input = InputController.instance;
-        input.OnJump.RemoveListener(_jump);
-        input.OnPrimary.RemoveListener(_primary);
-        input.OnSecondary.RemoveListener(_secondary);
-        input.OnSpecial.RemoveListener(_special);
-        input.OnMove.RemoveListener(_move);
+        input.OnJump.Unsubscribe(OnJump);
+        input.OnPrimary.Unsubscribe(OnPrimary);
+        input.OnSecondary.Unsubscribe(OnSecondary);
+        input.OnSpecial.Unsubscribe(OnSpecial);
+        input.OnMove.Unsubscribe(OnMove);
+        Debug.Log($"Input disconnected from {gameObject.name}");
     }
+
+    private void OnJump() => _jump.Invoke();
+    private void OnPrimary() => _primary.Invoke();
+    private void OnSecondary() => _secondary.Invoke();
+    private void OnSpecial() => _special.Invoke();
+    private void OnMove(Vector2 direction) => _move.Invoke(direction);
 }

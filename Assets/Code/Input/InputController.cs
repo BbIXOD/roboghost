@@ -24,7 +24,7 @@ public class InputController : SingletonBehaviour<InputController>
 
     private void FixedUpdate()
     {
-        OnMove.Invoke(_playerInput.Player.Move.ReadValue<Vector2>());
+        OnMove?.Invoke(_playerInput.Player.Move.ReadValue<Vector2>());
     }
 
     private void OnEnable()

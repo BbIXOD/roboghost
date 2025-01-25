@@ -1,20 +1,25 @@
 using UnityEngine;
 
 class MindConnectProjectile : BaseProjectile {
-    public InputConnector startConnector;
-    private bool wasConnected = false;
-    private void OnTriggerEnter2D(Collider2D collision) {
-        var success = collision.TryGetComponent(out InputConnector connector);
+    public IInputConnector startConnector;
+    private bool _wasConnected = false;
+
+    protected override void Start() {
+        base.Start();
+        triggerCallback = TriggerCallback;
+    }
+    private void TriggerCallback(Collider2D collision) {
+        var success = collision.TryGetComponent(out IInputConnector connector);
 
         if (success) {
             connector.Connect();
-            wasConnected = true;
+            _wasConnected = true;
         }
         Destroy(gameObject);
     }
 
     private void OnDestroy() {
-        if (!wasConnected) return;
+        if (_wasConnected) return;
         startConnector.Connect();
     }
 }
