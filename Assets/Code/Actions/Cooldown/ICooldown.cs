@@ -1,4 +1,5 @@
-interface ICooldown {
+interface ICooldown
+{
     bool IsReady { get; }
     void StartCooldown();
 }

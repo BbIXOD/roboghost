@@ -1,4 +1,5 @@
-interface IInputConnector {
+interface IInputConnector
+{
     void Connect();
     void Disconnect();
 }

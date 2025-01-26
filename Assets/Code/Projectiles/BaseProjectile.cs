@@ -14,7 +14,7 @@ abstract class BaseProjectile : MonoBehaviour
     [SerializeField]
     private float _lifeTime = 60f;
 
-    protected Action<Collider2D> triggerCallback = (collision) => {};
+    protected Action<Collider2D> triggerCallback = (collision) => { };
 
     protected virtual void Start()
     {
@@ -25,7 +25,8 @@ abstract class BaseProjectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (owner == null) {
+        if (owner == null)
+        {
             owner = collision.gameObject;
             return;
         }
