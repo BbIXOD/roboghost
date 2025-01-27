@@ -862,11 +862,11 @@ GameObject:
   - component: {fileID: 1864365531}
   - component: {fileID: 1864365536}
   - component: {fileID: 1864365533}
-  - component: {fileID: 1864365535}
   - component: {fileID: 1864365534}
   - component: {fileID: 1864365538}
   - component: {fileID: 1864365537}
   - component: {fileID: 1864365539}
+  - component: {fileID: 1864365540}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -1005,20 +1005,6 @@ MonoBehaviour:
   jumpForce: 10
   _colliders:
   - {fileID: 1864365533}
---- !u!114 &1864365535
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1864365528}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5faee3c984240d8e085a9651cabb1266, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  acceleration: 20
 --- !u!50 &1864365536
 Rigidbody2D:
   serializedVersion: 5
@@ -1110,8 +1096,8 @@ MonoBehaviour:
   _move:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1864365535}
-        m_TargetAssemblyTypeName: Walker, Assembly-CSharp
+      - m_Target: {fileID: 1864365540}
+        m_TargetAssemblyTypeName: ForceWalker, Assembly-CSharp
         m_MethodName: Walk
         m_Mode: 0
         m_Arguments:
@@ -1149,6 +1135,20 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &1864365540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1864365528}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 81efb2d92670e0ff0adf419d65861c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  force: 50
+  maxSpeed: 7
 --- !u!1 &1945657064
 GameObject:
   m_ObjectHideFlags: 0
