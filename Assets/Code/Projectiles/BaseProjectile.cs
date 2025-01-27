@@ -25,11 +25,6 @@ abstract class BaseProjectile : MonoBehaviour
 
     protected virtual void OnTriggerEnter2D(Collider2D collision)
     {
-        if (owner == null)
-        {
-            owner = collision.gameObject;
-            return;
-        }
         if (collision.gameObject == owner) return;
 
         triggerCallback(collision);

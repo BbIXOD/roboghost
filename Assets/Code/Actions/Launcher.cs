@@ -13,6 +13,7 @@ class Launcher : MonoBehaviour
         if (!_cooldown.IsReady) return false;
 
         launchedProjectile = Instantiate(projectile, transform.position, transform.rotation);
+        launchedProjectile.GetComponent<BaseProjectile>().owner = gameObject;
         _cooldown.StartCooldown();
         return true;
     }
