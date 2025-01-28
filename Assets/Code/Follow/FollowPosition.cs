@@ -3,7 +3,7 @@ using UnityEngine;
 public class FollowPosition : MonoBehaviour
 {
     [SerializeField]
-    private Transform _target;
+    protected Transform target;
     [SerializeField]
     private Vector2 _offset;
 
@@ -13,7 +13,8 @@ public class FollowPosition : MonoBehaviour
     private Vector3 _velocity = Vector3.zero;
 
     private void LateUpdate() {
-        var targetPosition = _target.position + (Vector3)_offset;
+        var targetPosition = target.position + (Vector3)_offset;
+        targetPosition.z = transform.position.z;
 
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref _velocity, _smoothTime);
     }

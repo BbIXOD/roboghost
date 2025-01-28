@@ -2,13 +2,16 @@ using UnityEngine;
 
 class MindConnectProjectile : BaseProjectile
 {
-    public IInputConnector startConnector;
+    private IInputConnector _startConnector;
     private bool _wasConnected = false;
 
     protected override void Start()
     {
         base.Start();
+        _startConnector = owner.GetComponent<IInputConnector>();
         triggerCallback = TriggerCallback;
+        _startConnector.Disconnect();
+        EventPositionFollower.OnTargetChanged?.Invoke(transform);
     }
     private void TriggerCallback(Collider2D collision)
     {
@@ -17,6 +20,7 @@ class MindConnectProjectile : BaseProjectile
         if (success)
         {
             connector.Connect();
+            EventPositionFollower.OnTargetChanged?.Invoke(collision.transform);
             _wasConnected = true;
         }
         Destroy(gameObject);
@@ -25,6 +29,7 @@ class MindConnectProjectile : BaseProjectile
     private void OnDestroy()
     {
         if (_wasConnected) return;
-        startConnector.Connect();
+        _startConnector.Connect();
+        EventPositionFollower.OnTargetChanged?.Invoke(owner.transform);
     }
 }
