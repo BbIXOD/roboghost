@@ -9,6 +9,7 @@ public class InputController : SingletonBehaviour<InputController>
     public UnityEvent OnPrimary;
     public UnityEvent OnSecondary;
     public UnityEvent OnSpecial;
+    public UnityEvent<Vector2> OnLook;
 
     private PlayerInputActions _playerInput;
 
@@ -25,6 +26,7 @@ public class InputController : SingletonBehaviour<InputController>
     private void FixedUpdate()
     {
         OnMove?.Invoke(_playerInput.Player.Move.ReadValue<Vector2>());
+        OnLook?.Invoke(_playerInput.Player.Look.ReadValue<Vector2>());
     }
 
     private void OnEnable()

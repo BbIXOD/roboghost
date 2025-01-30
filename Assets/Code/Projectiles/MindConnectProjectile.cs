@@ -10,8 +10,7 @@ class MindConnectProjectile : BaseProjectile
         base.Start();
         _startConnector = owner.GetComponent<IInputConnector>();
         triggerCallback = TriggerCallback;
-        _startConnector.Disconnect();
-        EventPositionFollower.OnTargetChanged?.Invoke(transform);
+        MainCharacterSwitcher.instance.SwitchTarget(gameObject);
     }
     private void TriggerCallback(Collider2D collision)
     {
@@ -19,9 +18,8 @@ class MindConnectProjectile : BaseProjectile
 
         if (success)
         {
-            connector.Connect();
-            EventPositionFollower.OnTargetChanged?.Invoke(collision.transform);
             _wasConnected = true;
+            MainCharacterSwitcher.instance.SwitchTarget(collision.gameObject);
         }
         Destroy(gameObject);
     }
@@ -29,7 +27,6 @@ class MindConnectProjectile : BaseProjectile
     private void OnDestroy()
     {
         if (_wasConnected) return;
-        _startConnector.Connect();
-        EventPositionFollower.OnTargetChanged?.Invoke(owner.transform);
+        MainCharacterSwitcher.instance.SwitchTarget(owner);
     }
 }

@@ -14,6 +14,8 @@ class InputConnector : MonoBehaviour, IInputConnector
     private UnityEvent _special;
     [SerializeField]
     private UnityEvent<Vector2> _move;
+    [SerializeField]
+    private UnityEvent<Vector2> _look;
 
 
     public void Connect()
@@ -24,6 +26,7 @@ class InputConnector : MonoBehaviour, IInputConnector
         input.OnSecondary.Subscribe(OnSecondary);
         input.OnSpecial.Subscribe(OnSpecial);
         input.OnMove.Subscribe(OnMove);
+        input.OnLook.Subscribe(OnLook);
         Debug.Log($"Input connected to {gameObject.name}");
     }
 
@@ -35,6 +38,7 @@ class InputConnector : MonoBehaviour, IInputConnector
         input.OnSecondary.Unsubscribe(OnSecondary);
         input.OnSpecial.Unsubscribe(OnSpecial);
         input.OnMove.Unsubscribe(OnMove);
+        input.OnLook.Unsubscribe(OnLook);
         Debug.Log($"Input disconnected from {gameObject.name}");
     }
 
@@ -43,4 +47,5 @@ class InputConnector : MonoBehaviour, IInputConnector
     private void OnSecondary() => _secondary.Invoke();
     private void OnSpecial() => _special.Invoke();
     private void OnMove(Vector2 direction) => _move.Invoke(direction);
+    private void OnLook(Vector2 direction) => _look.Invoke(direction);
 }

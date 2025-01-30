@@ -10,8 +10,8 @@ class RotationFollowCursor : MonoBehaviour
 
     public void Look(Vector2 destPos)
     {
-        var mousePos = (Vector3)destPos;
-        mousePos.z = _camera.transform.position.x - transform.position.x;
-        transform.LookAt(_camera.ScreenToWorldPoint(mousePos));
+        var dir = _camera.ScreenToWorldPoint(destPos) - transform.position;
+        dir.z = transform.position.z;
+        transform.right = dir;
     }
 }
