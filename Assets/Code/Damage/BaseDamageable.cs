@@ -1,13 +1,18 @@
+using UnityEngine;
+
 abstract class BaseDamageable : MonoBehaviour, IDamageable
 {
 
     [SerializeField]
     private int _maxHealth = 0;
-    private int _health = _maxHealth;
-    public int Health { get => _health; };
+
+    public int Health { get; private set; }
+    private void Start() {
+        Health = _maxHealth;
+    }
     public void TakeDamage(int damage) {
-        _health -= damage;
-        if (_health <= 0) {
+        Health -= damage;
+        if (Health <= 0) {
             OnDeath();
         }
     }

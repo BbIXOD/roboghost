@@ -1,11 +1,11 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 interface IState {
-    public void Enter(StateMachine machine);
-    public void Exit(StateMachine machine);
+    public void Enter(GameObject owner);
+    public void Exit(GameObject owner);
 
-    public void Update(StateMachine machine);
+    public void Update(GameObject owner);
 
-    public void OnTriggerEnter2D(StateMachine machine, Collider2D other);
-    public void OnTriggerExit2D(StateMachine machine, Collider2D other);
+    public List<ITransition> Transitions { get; }
 }
