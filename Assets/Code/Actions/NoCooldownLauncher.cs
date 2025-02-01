@@ -1,6 +1,7 @@
 class NoCooldownLauncher : Launcher
 {
-    private void Start() {
+    private void Start()
+    {
         _cooldown = new InstantCooldown();
     }
 }

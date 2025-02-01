@@ -1,7 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-interface IState {
+interface IState
+{
     public void Enter(GameObject owner);
     public void Exit(GameObject owner);
 

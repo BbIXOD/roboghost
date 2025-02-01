@@ -12,7 +12,8 @@ public class FollowPosition : MonoBehaviour
 
     private Vector3 _velocity = Vector3.zero;
 
-    private void LateUpdate() {
+    private void LateUpdate()
+    {
         var targetPosition = target.position + (Vector3)_offset;
         targetPosition.z = transform.position.z;
 
