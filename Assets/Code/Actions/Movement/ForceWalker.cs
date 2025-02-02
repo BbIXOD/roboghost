@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-class ForceWalker : MonoBehaviour
+class ForceWalker : MonoBehaviour, IMovement
 {
     private Rigidbody2D _rb;
 
@@ -29,5 +29,7 @@ class ForceWalker : MonoBehaviour
             _rb.AccelerateX(deceleration * decDirection, maxSpeed);
         }
     }
+
+    public void Move(Vector2 direction) => Walk(direction);
 
 }

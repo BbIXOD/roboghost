@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-class Walker : MonoBehaviour
+class Walker : MonoBehaviour, IMovement
 {
     public float speed = 1f;
     public float acceleration = 1f;
@@ -21,4 +21,6 @@ class Walker : MonoBehaviour
         _velocityX = Mathf.MoveTowards(_velocityX, _destSpeed, acceleration * Time.fixedDeltaTime);
         _rb.linearVelocityX = _velocityX;
     }
+
+    public void Move(Vector2 direction) => Walk(direction);
 }

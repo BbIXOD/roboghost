@@ -12,7 +12,7 @@ class StateMachine : MonoBehaviour
         CurrentState?.Enter(gameObject);
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         CurrentState?.Update(gameObject);
 
