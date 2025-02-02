@@ -3,14 +3,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 class ForceWalker : MonoBehaviour, IMovement
 {
+
+    public float force = 1f;
+    public float maxSpeed = 10f;
     private Rigidbody2D _rb;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
     }
-    public float force = 1f;
-    public float maxSpeed = 10f;
 
     public void Walk(Vector2 direction)
     {

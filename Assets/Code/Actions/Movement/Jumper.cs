@@ -6,8 +6,7 @@ class Jumper : MonoBehaviour
 {
     public float jumpForce = 1f;
 
-    [SerializeField]
-    private Collider2D[] _colliders;
+    public Collider2D[] colliders;
 
     private Rigidbody2D _rb;
 
@@ -18,7 +17,7 @@ class Jumper : MonoBehaviour
 
     public void Jump()
     {
-        if (_colliders.All(c => !c.IsTouchingLayers()))
+        if (colliders.All(c => !c.IsTouchingLayers()))
         {
             return;
         }
