@@ -2,13 +2,13 @@ using UnityEngine;
 
 class PlayerInstance : SingletonBehaviour<PlayerInstance>
 {
-    [SerializeField]
-    private GameObject _player;
-    public static GameObject player;
-
-    protected override void Awake()
+    public GameObject Player { get; private set; }
+    public void SetPlayer(GameObject player)
     {
-        base.Awake();
-        player = _player;
+        if (Player != null) {
+            throw new System.Exception("Player already set");
+        }
+        Player = player;
     }
+
 }

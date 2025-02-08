@@ -4,18 +4,12 @@ using UnityEngine.Events;
 
 class InputConnector : MonoBehaviour, IInputConnector
 {
-    [SerializeField]
-    private UnityEvent _jump;
-    [SerializeField]
-    private UnityEvent _primary;
-    [SerializeField]
-    private UnityEvent _secondary;
-    [SerializeField]
-    private UnityEvent _special;
-    [SerializeField]
-    private UnityEvent<Vector2> _move;
-    [SerializeField]
-    private UnityEvent<Vector2> _look;
+    public UnityEvent jump;
+    public UnityEvent primary;
+    public UnityEvent secondary;
+    public UnityEvent special;
+    public UnityEvent<Vector2> move;
+    public UnityEvent<Vector2> look;
 
 
     public void Connect()
@@ -42,10 +36,10 @@ class InputConnector : MonoBehaviour, IInputConnector
         Debug.Log($"Input disconnected from {gameObject.name}");
     }
 
-    private void OnJump() => _jump.Invoke();
-    private void OnPrimary() => _primary.Invoke();
-    private void OnSecondary() => _secondary.Invoke();
-    private void OnSpecial() => _special.Invoke();
-    private void OnMove(Vector2 direction) => _move.Invoke(direction);
-    private void OnLook(Vector2 direction) => _look.Invoke(direction);
+    private void OnJump() => jump.Invoke();
+    private void OnPrimary() => primary.Invoke();
+    private void OnSecondary() => secondary.Invoke();
+    private void OnSpecial() => special.Invoke();
+    private void OnMove(Vector2 direction) => move.Invoke(direction);
+    private void OnLook(Vector2 direction) => look.Invoke(direction);
 }

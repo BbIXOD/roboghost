@@ -2,14 +2,9 @@ using UnityEngine;
 
 class MoveTurn : MonoBehaviour
 {
-    private SpriteRenderer _sr;
-    private void Start()
+    public void Move(Vector2 direction)
     {
-        _sr = GetComponent<SpriteRenderer>();
-    }
-
-    public void Move(Vector2 direction) {
         if (Mathf.Approximately(direction.x, 0f)) return;
-        _sr.flipX = direction.x < 0;
+        transform.localScale = new Vector3(Mathf.Abs(transform.localScale.x) * Mathf.Sign(direction.x), transform.localScale.y, transform.localScale.z);
     }
 }

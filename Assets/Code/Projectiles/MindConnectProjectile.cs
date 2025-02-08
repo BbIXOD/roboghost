@@ -14,12 +14,12 @@ class MindConnectProjectile : BaseProjectile
     }
     private void TriggerCallback(Collider2D collision)
     {
-        var success = collision.TryGetComponent(out IInputConnector connector);
+        var success = collision.transform.root.TryGetComponent(out IInputConnector connector);
 
         if (success)
         {
             _wasConnected = true;
-            MainCharacterSwitcher.instance.SwitchTarget(collision.gameObject);
+            MainCharacterSwitcher.instance.SwitchTarget(collision.transform.root.gameObject);
         }
         Destroy(gameObject);
     }
